@@ -1,0 +1,8 @@
+{
+  "actionNamespace": true,
+  "paramSpec": {
+    "findFiles": {
+      "query": "wildcard"
+    }
+  }
+}

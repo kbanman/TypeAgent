@@ -1150,6 +1150,43 @@ importers:
         specifier: ^5.4.2
         version: 5.4.3
 
+  packages/agents/search:
+    dependencies:
+      '@microsoft/microsoft-graph-types':
+        specifier: ^2.40.0
+        version: 2.40.0
+      '@typeagent/agent-sdk':
+        specifier: workspace:*
+        version: link:../../agentSdk
+      aiclient:
+        specifier: workspace:*
+        version: link:../../aiclient
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
+      debug:
+        specifier: ^4.3.4
+        version: 4.3.4(supports-color@8.1.1)
+      graph-utils:
+        specifier: workspace:*
+        version: link:../agentUtils/graphUtils
+      typeagent:
+        specifier: workspace:*
+        version: link:../../typeagent
+    devDependencies:
+      '@types/debug':
+        specifier: ^4.1.10
+        version: 4.1.10
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      typescript:
+        specifier: ^5.4.2
+        version: 5.4.3
+
   packages/agents/spelunker:
     dependencies:
       '@typeagent/agent-sdk':

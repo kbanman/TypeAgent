@@ -1,0 +1,9 @@
+{
+  "emojiChar": "🔍",
+  "description": "Agent integration with MS SharePoint and OneDrive",
+  "schema": {
+    "description": "Search agent finds relevant documents and files",
+    "schemaFile": "./searchActionsSchema.ts",
+    "schemaType": "SearchAction"
+  }
+}

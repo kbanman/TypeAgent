@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SearchHit } from "@microsoft/microsoft-graph-types";
+import { SearchHit, SearchResponse } from "@microsoft/microsoft-graph-types";
 import registerDebug from "debug";
 import { GraphClient } from "./graphClient.js";
 
@@ -11,10 +11,10 @@ export class SearchClient extends GraphClient {
         super("@search login");
     }
 
-    public async findFiles(query: string): Promise<SearchHit | undefined> {
+    public async findFiles(query: string): Promise<SearchHit[]> {
         const client = await this.ensureClient();
         this.logger(`searching for ${query}`);
-        return client
+        const result = await client
             .api("/search/query")
             .post({
                 requests: [
@@ -25,8 +25,16 @@ export class SearchClient extends GraphClient {
                         },
                     },
                 ],
-            });
+            }) as SearchResponse;
+        if (!result || !result.hitsContainers) {
+            return [];
+        }
+        return result.hitsContainers.map((container) => container.hits).flat().filter<SearchHit>(isSearchHit);
     }
+}
+
+function isSearchHit(value: SearchHit | null | undefined): value is SearchHit {
+    return value !== null && value !== undefined;
 }
 
 export async function createSearchGraphClient(): Promise<SearchClient> {
